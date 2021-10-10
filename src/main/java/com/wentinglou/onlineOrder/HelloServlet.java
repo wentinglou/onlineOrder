@@ -1,8 +1,11 @@
-package com.laioffer.onlineorder;
+package com.wentinglou.onlineOrder;
 
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import org.json.JSONObject;
+import org.apache.commons.io.IOUtils;
+
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
@@ -13,15 +16,17 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+        response.setContentType("application/json");
 
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+        response.getWriter();
+
     }
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        JSONObject json = new JSONObject(IOUtils.toString(request.getReader()));
+
+        response.getWriter();
+    }
     public void destroy() {
     }
 }
