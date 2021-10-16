@@ -2,6 +2,8 @@ package com.wentinglou.onlineOrder.controller;
 
 import com.wentinglou.onlineOrder.entity.MenuItem;
 import com.wentinglou.onlineOrder.entity.Restaurant;
+import com.wentinglou.onlineOrder.service.MenuInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +14,19 @@ import java.util.*;
 
 @Controller
 public class MenuInfoController {
+
+    @Autowired
+    private MenuInfoService menuInfoService;
+
     @RequestMapping(value = "/restaurant/{restaurantId}/menu", method = RequestMethod.GET)
     @ResponseBody
     public List<MenuItem> getMenu(@PathVariable("restaurantId") int restaurantId) {
-        return new ArrayList<>();
+        return menuInfoService.getAllMenuItem(restaurantId);
     }
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET)
     @ResponseBody
     public List<Restaurant> getRestaurants() {
-        return new ArrayList<>();
+        return menuInfoService.getRestaurants();
     }
 }
